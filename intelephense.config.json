@@ -1,0 +1,13 @@
+{
+  "files": {
+    "maxSize": 5000000
+  },
+  "environment": {
+    "includePaths": [
+      "c:/xampp/htdocs/pasien/lib/fpdf"
+    ]
+  },
+  "diagnostics": {
+    "undefinedTypes": false
+  }
+}

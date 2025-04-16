@@ -29,8 +29,25 @@ $products = [
 foreach ($products as $name => $price) {
     $sql = "UPDATE products SET price = ? WHERE product_name = ?";
     $stmt = mysqli_prepare($koneksi, $sql);
-    mysqli_stmt_bind_param($stmt, "ds", $price, $name);
-    mysqli_stmt_execute($stmt);
+    if (!$stmt) {
+        echo "Prepare failed for product '$name': " . mysqli_error($koneksi) . "\n";
+        continue;
+    }
+    $bind = mysqli_stmt_bind_param($stmt, "ds", $price, $name);
+    if (!$bind) {
+        echo "Bind param failed for product '$name': " . mysqli_stmt_error($stmt) . "\n";
+        continue;
+    }
+    $exec = mysqli_stmt_execute($stmt);
+    if (!$exec) {
+        echo "Execute failed for product '$name': " . mysqli_stmt_error($stmt) . "\n";
+        continue;
+    }
+    $affected_rows = mysqli_stmt_affected_rows($stmt);
+    if ($affected_rows === 0) {
+        echo "No rows updated for product '$name'. Check if product_name matches.\n";
+    }
+    mysqli_stmt_close($stmt);
 }
 
 // Verify updates

@@ -47,7 +47,7 @@ try {
 
     // Test 3: Password Verification
     echo "<h2>Test 3: Password Verification</h2>";
-    if (password_verify('admin123', $user['password'])) {
+    if (password_verify('password', $user['password'])) {
         echo "<div class='success'>✓ Password verification working</div>";
     } else {
         throw new Exception("Password verification failed");
@@ -73,10 +73,10 @@ try {
     echo "<div class='info'>
         <h3>Next Steps:</h3>
         <ol>
-            <li>Visit the main system: <a href='/pasien/pasien/'>http://localhost/pasien/pasien/</a></li>
+            <li>Visit the main system: <a href='/pasien/'>http://localhost/pasien/</a></li>
             <li>Log in with:
                 <pre>Username: admin
-Password: admin123</pre>
+Password: password</pre>
             </li>
             <li>After successful login, you should see the UMKM dashboard</li>
         </ol>
